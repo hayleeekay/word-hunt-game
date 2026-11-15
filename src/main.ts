@@ -128,14 +128,22 @@ function check(path: readonly number[]): void {
   render();
 }
 
-function tileAt(event: PointerEvent): number | null {
+function tileAt(event: PointerEvent, tracing = false): number | null {
   const hit = document.elementFromPoint(event.clientX, event.clientY)?.closest<HTMLButtonElement>('.tile');
-  return hit && tiles.contains(hit) ? Number(hit.dataset.tile) : null;
+  if (!hit || !tiles.contains(hit)) return null;
+  if (tracing) {
+    const { left, top, width, height } = hit.getBoundingClientRect();
+    const x = Math.abs((event.clientX - left) / width - 0.5);
+    const y = Math.abs((event.clientY - top) / height - 0.5);
+    // A diagonal can graze a side tile at the intersection of four tiles.
+    if (x > 0.36 && y > 0.36) return null;
+  }
+  return Number(hit.dataset.tile);
 }
 
 function trace(event: PointerEvent): void {
   if (!gesture) return;
-  const tile = tileAt(event);
+  const tile = tileAt(event, true);
   const moved = Math.hypot(event.clientX - gesture.start.x, event.clientY - gesture.start.y) >= 7;
   if (!gesture.dragging && (moved || (tile !== null && tile !== gesture.start.tile))) {
     gesture.dragging = true;

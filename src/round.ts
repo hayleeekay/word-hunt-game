@@ -1,8 +1,8 @@
 export const board = {
   rows: ['AIPIL', 'CLLUT', 'ERSEI', 'NMOJR', 'ISAIS'],
   targets: ['TULIP', 'LILAC', 'ROSE', 'IRIS', 'JASMINE'],
-  // A small sample for the test round. A full bonus dictionary can come later.
-  bonus: ['AIR', 'ALL', 'ARE', 'ARM', 'ART', 'EAR', 'ERA', 'ILL', 'JAR', 'LIP', 'PILOT', 'RIM', 'SEA', 'SEAM', 'SEAR', 'SIR', 'SORE'],
+  // A small set of traceable bonus words for the fixed round.
+  bonus: ['AIR', 'ALL', 'ILL', 'LIP', 'SIR', 'SORE'],
 };
 
 export const size = board.rows.length;
