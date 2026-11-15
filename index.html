@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f2ec">
+    <title>Word Hunt</title>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Word Hunt</h1>
+        <p>Find every hidden word to finish the board.</p>
+      </header>
+      <section class="round" aria-labelledby="theme">
+        <div class="round-heading">
+          <h2 id="theme">Flowers</h2>
+          <span id="progress"></span>
+        </div>
+        <p id="instructions">Drag through neighboring letters, or pick them one by one and choose Check word. Paths can turn and go diagonally.</p>
+        <div id="board" role="group" aria-label="Letter board" aria-describedby="instructions keyboard-help">
+          <div id="tiles"></div>
+          <svg id="paths" aria-hidden="true" focusable="false"></svg>
+        </div>
+        <p id="keyboard-help" class="sr-only">Use the arrow keys to move through the board, Enter or Space to pick a tile, and Escape to clear your selection.</p>
+        <div class="selection" aria-label="Word selection">
+          <span id="draft" aria-live="off"></span>
+          <button id="clear" class="quiet" type="button" aria-disabled="true">Clear</button>
+          <button id="submit" type="button" aria-disabled="true">Check word</button>
+        </div>
+        <p id="feedback" role="status" aria-atomic="true"></p>
+        <footer>
+          <span id="bonus"></span>
+          <button id="restart" class="quiet" type="button">Restart round</button>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
